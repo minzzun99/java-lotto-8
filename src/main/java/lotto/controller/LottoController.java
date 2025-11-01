@@ -34,7 +34,7 @@ public class LottoController {
             String inputAmount = InputView.requestPurchaseAmount();
             return new LottoPurchase(inputAmount);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
         return inputPurchaseAmount();
     }
@@ -51,7 +51,7 @@ public class LottoController {
                 int bonusNumber = inputBonusNumber();
                 return new WinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -61,7 +61,7 @@ public class LottoController {
             String input = InputView.requestWinningNumbers();
             return new Lotto(InputParser.parseToIntegerList(input));
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
         return inputWinningNumbers();
     }
@@ -71,7 +71,7 @@ public class LottoController {
             String input = InputView.requestBonusNumber();
             return InputParser.parseInteger(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
         return inputBonusNumber();
     }

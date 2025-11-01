@@ -27,4 +27,8 @@ public class OutputView {
                     rankResult.getPrizeMoney(), rankResult.getCount());
         }
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }
