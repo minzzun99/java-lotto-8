@@ -45,36 +45,35 @@ public class LottoController {
     }
 
     private WinningLotto inputWinningLotto() {
-        try {
-            String inputWinningNumbers = InputView.requestWinningNumbers();
-            Lotto winningNumbers = parseWinningNumbers(inputWinningNumbers);
-
-            String inputBonusNumber = InputView.requestBonusNumber();
-            int bonusNumber = parseBonusNumber(inputBonusNumber);
-
-            return new WinningLotto(winningNumbers, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        Lotto winningNumbers = inputWinningNumbers();
+        while (true) {
+            try {
+                int bonusNumber = inputBonusNumber();
+                return new WinningLotto(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        return inputWinningLotto();
     }
 
-    private Lotto parseWinningNumbers(String input) {
+    private Lotto inputWinningNumbers() {
         try {
+            String input = InputView.requestWinningNumbers();
             return new Lotto(InputParser.parseToIntegerList(input));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return parseWinningNumbers(input);
+        return inputWinningNumbers();
     }
 
-    private int parseBonusNumber(String input) {
+    private int inputBonusNumber() {
         try {
+            String input = InputView.requestBonusNumber();
             return InputParser.parseInteger(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
-        return parseBonusNumber(input);
+        return inputBonusNumber();
     }
 
     private void printWinningResult(WinningResultDto winningResultDto) {
