@@ -9,9 +9,9 @@ public enum ErrorMessage {
 
     INVALID_LOTTO_NUMBERS_COUNT("로또 번호는 6개여야 합니다."),
     DUPLICATE_LOTTO_NUMBER("중복된 숫자가 입력됐습니다."),
-    INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1~45 사이의 숫자만 가능합니다."),
+    INVALID_LOTTO_NUMBER_RANGE("로또 번호는 1~45 사이의 숫자만 가능합니다.");
 
-    ERROR_PREFIX("[ERROR] ");
+    private static final String ERROR_PREFIX = "[ERROR] ";
 
     private final String message;
 
