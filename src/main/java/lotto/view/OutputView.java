@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.constant.PrintMessage;
 import lotto.dto.RankResult;
 import lotto.dto.WinningResultDto;
 
