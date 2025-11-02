@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
+
 public class WinningLotto {
     private final static int MIN_LOTTO_NUMBER = 1;
     private final static int MAX_LOTTO_NUMBER = 45;
@@ -20,13 +22,13 @@ public class WinningLotto {
 
     private void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("로또 번호는 1~45 사이의 숫자만 가능합니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateBonusNumberDuplicate(Lotto winningLotto, int bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("중복된 보너스 번호가 입력되었습니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
