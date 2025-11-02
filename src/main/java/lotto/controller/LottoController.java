@@ -6,7 +6,6 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.dto.WinningResultDto;
 import lotto.service.LottoService;
-import lotto.util.InputParser;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -33,7 +32,7 @@ public class LottoController {
         while (true) {
             try {
                 String inputAmount = InputView.requestPurchaseAmount();
-                return new LottoPurchase(inputAmount);
+                return lottoService.createLottoPurchase(inputAmount);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -50,7 +49,7 @@ public class LottoController {
         while (true) {
             try {
                 int bonusNumber = inputBonusNumber();
-                return new WinningLotto(winningNumbers, bonusNumber);
+                return lottoService.createWinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -61,8 +60,7 @@ public class LottoController {
         while (true) {
             try {
                 String input = InputView.requestWinningNumbers();
-                // TODO: Service로 위임
-                return new Lotto(InputParser.parseToIntegerList(input));
+                return lottoService.createLotto(input);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }
@@ -73,7 +71,7 @@ public class LottoController {
         while (true) {
             try {
                 String input = InputView.requestBonusNumber();
-                return InputParser.parseInteger(input);
+                return lottoService.parseBonusNumber(input);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

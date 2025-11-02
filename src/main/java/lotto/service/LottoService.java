@@ -11,6 +11,7 @@ import lotto.domain.WinningLotto;
 import lotto.domain.strategy.NumberGenerator;
 import lotto.dto.RankResult;
 import lotto.dto.WinningResultDto;
+import lotto.util.InputParser;
 
 public class LottoService {
     private final NumberGenerator numberGenerator;
@@ -77,5 +78,21 @@ public class LottoService {
             winningResults.add(new RankResult(message, prize, count));
         }
         return winningResults;
+    }
+
+    public LottoPurchase createLottoPurchase(String input) {
+        return new LottoPurchase(input);
+    }
+
+    public WinningLotto createWinningLotto(Lotto winningNumbers, int bonusNumber) {
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    public Lotto createLotto(String input) {
+        return new Lotto(InputParser.parseToIntegerList(input));
+    }
+
+    public int parseBonusNumber(String input) {
+        return InputParser.parseInteger(input);
     }
 }
