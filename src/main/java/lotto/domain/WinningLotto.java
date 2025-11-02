@@ -3,8 +3,9 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 
 public class WinningLotto {
-    private final static int MIN_LOTTO_NUMBER = 1;
-    private final static int MAX_LOTTO_NUMBER = 45;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int BONUS_NUMBER_CHECK_MATCH_COUNT = 5;
 
     private final Lotto winningLotto;
     private final int bonusNumber;
@@ -34,7 +35,7 @@ public class WinningLotto {
 
     public Rank checkRank(Lotto lotto) {
         int matchCount = countMatchNumbers(lotto);
-        boolean isBonusMatch = lotto.getNumbers().contains(bonusNumber);
+        boolean isBonusMatch = checkBonusNumberMatch(lotto, matchCount);
         return Rank.from(matchCount, isBonusMatch);
     }
 
@@ -46,5 +47,12 @@ public class WinningLotto {
             }
         }
         return count;
+    }
+
+    private boolean checkBonusNumberMatch(Lotto lotto, int matchCount) {
+        if (matchCount != BONUS_NUMBER_CHECK_MATCH_COUNT) {
+            return false;
+        }
+        return lotto.getNumbers().contains(bonusNumber);
     }
 }
