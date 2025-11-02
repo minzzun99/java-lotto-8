@@ -1,12 +1,9 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoConstant;
 
 public class WinningLotto {
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int BONUS_NUMBER_CHECK_MATCH_COUNT = 5;
-
     private final Lotto winningLotto;
     private final int bonusNumber;
 
@@ -22,7 +19,7 @@ public class WinningLotto {
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+        if (bonusNumber < LottoConstant.MIN_LOTTO_NUMBER || bonusNumber > LottoConstant.MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
@@ -50,7 +47,7 @@ public class WinningLotto {
     }
 
     private boolean checkBonusNumberMatch(Lotto lotto, int matchCount) {
-        if (matchCount != BONUS_NUMBER_CHECK_MATCH_COUNT) {
+        if (matchCount != LottoConstant.BONUS_NUMBER_CHECK_MATCH_COUNT) {
             return false;
         }
         return lotto.getNumbers().contains(bonusNumber);
