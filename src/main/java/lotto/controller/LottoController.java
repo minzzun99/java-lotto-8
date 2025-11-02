@@ -30,13 +30,14 @@ public class LottoController {
     }
 
     private LottoPurchase inputPurchaseAmount() {
-        try {
-            String inputAmount = InputView.requestPurchaseAmount();
-            return new LottoPurchase(inputAmount);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+        while (true) {
+            try {
+                String inputAmount = InputView.requestPurchaseAmount();
+                return new LottoPurchase(inputAmount);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
         }
-        return inputPurchaseAmount();
     }
 
     private void printPurchaseLottos(Lottos lottos) {
@@ -57,23 +58,26 @@ public class LottoController {
     }
 
     private Lotto inputWinningNumbers() {
-        try {
-            String input = InputView.requestWinningNumbers();
-            return new Lotto(InputParser.parseToIntegerList(input));
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+        while (true) {
+            try {
+                String input = InputView.requestWinningNumbers();
+                // TODO: Service로 위임
+                return new Lotto(InputParser.parseToIntegerList(input));
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
         }
-        return inputWinningNumbers();
     }
 
     private int inputBonusNumber() {
-        try {
-            String input = InputView.requestBonusNumber();
-            return InputParser.parseInteger(input);
-        } catch (IllegalArgumentException e) {
-            OutputView.printErrorMessage(e.getMessage());
+        while (true) {
+            try {
+                String input = InputView.requestBonusNumber();
+                return InputParser.parseInteger(input);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
         }
-        return inputBonusNumber();
     }
 
     private void printWinningResult(WinningResultDto winningResultDto) {
