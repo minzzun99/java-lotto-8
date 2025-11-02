@@ -57,13 +57,13 @@ public class LottoService {
         for (Map.Entry<Rank, Integer> entry : rankCount.entrySet()) {
             Rank rank = entry.getKey();
             int count = entry.getValue();
-            totalPrize += (long) rank.getPrize() * count;
+            totalPrize += rank.getPrize() * count;
         }
         return totalPrize;
     }
 
     private double calculateTotalReturnRate(long totalPrize, int purchaseAmount) {
-        return (double) totalPrize / purchaseAmount * 100;
+        return ((double) totalPrize / purchaseAmount) * 100;
     }
 
     private List<RankResult> createWinningResults(Map<Rank, Integer> rankCount) {
@@ -73,7 +73,7 @@ public class LottoService {
                 continue;
             }
             String message = rank.getMessage();
-            int prize = rank.getPrize();
+            long prize = rank.getPrize();
             int count = rankCount.getOrDefault(rank, 0);
             winningResults.add(new RankResult(message, prize, count));
         }

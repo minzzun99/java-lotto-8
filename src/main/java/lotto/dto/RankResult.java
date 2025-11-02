@@ -2,10 +2,10 @@ package lotto.dto;
 
 public class RankResult {
     private final String message;
-    private final int prizeMoney;
+    private final long prizeMoney;
     private final int count;
 
-    public RankResult(String message, int prizeMoney, int count) {
+    public RankResult(String message, long prizeMoney, int count) {
         this.message = message;
         this.prizeMoney = prizeMoney;
         this.count = count;
@@ -15,7 +15,7 @@ public class RankResult {
         return message;
     }
 
-    public int getPrizeMoney() {
+    public long getPrizeMoney() {
         return prizeMoney;
     }
 
