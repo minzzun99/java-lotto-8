@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.constant.ErrorMessage;
+import lotto.util.InputParser;
+
 public class LottoPurchase {
     private static final int LOTTO_PRICE = 1000;
     private static final int MAX_LOTTO_PURCHASE = 100_000;
@@ -8,27 +11,26 @@ public class LottoPurchase {
     private final int lottoCount;
 
     public LottoPurchase(String input) {
-        int amount = parseAmount(input);
+        int amount = InputParser.parseAmount(input);
         validatePurchaseAmount(amount);
         this.amount = amount;
         this.lottoCount = calculateLottoCount(amount);
     }
 
-    private int parseAmount(String input) {
-        try {
-            return Integer.parseInt(input.strip().replace(",", ""));
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("구입 금액은 숫자만 입력 가능합니다.");
+    private void validatePurchaseAmount(int amount) {
+        validateAmountUnit(amount);
+        validateMaxAmount(amount);
+    }
+
+    private void validateAmountUnit(int amount) {
+        if (amount % LOTTO_PRICE != 0 || amount < LOTTO_PRICE) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_UNIT.getMessage());
         }
     }
 
-    private void validatePurchaseAmount(int amount) {
-        if (amount % LOTTO_PRICE != 0 || amount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("1,000원 단위로 입력해 주세요.");
-        }
-
+    private void validateMaxAmount(int amount) {
         if (amount > MAX_LOTTO_PURCHASE) {
-            throw new IllegalArgumentException("한 번에 100,000원까지 구매 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_OVER_LIMIT.getMessage());
         }
     }
 
