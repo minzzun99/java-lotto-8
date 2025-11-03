@@ -6,7 +6,6 @@ import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -85,13 +84,13 @@ class LottoTest {
                 "'1,7,8,9,10,11', 1",
                 "'7,8,9,10,11,12', 0",
         })
-        void 번호_일치_개수_계산_확인(String input, int exceptedMatchCount) {
+        void 번호_일치_개수_계산_확인(String input, int expectedMatchCount) {
             List<Integer> targetNumbers = Stream.of(input.split(","))
                     .map(Integer::parseInt)
                     .toList();
 
             int matchCount = lotto.calculateMatchCount(targetNumbers);
-            assertThat(matchCount).isEqualTo(exceptedMatchCount);
+            assertThat(matchCount).isEqualTo(expectedMatchCount);
         }
     }
 }

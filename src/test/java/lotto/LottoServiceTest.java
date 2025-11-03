@@ -1,7 +1,5 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
@@ -13,6 +11,8 @@ import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoServiceTest {
     private final NumberGenerator testNumberGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
