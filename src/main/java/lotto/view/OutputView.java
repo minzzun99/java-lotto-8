@@ -7,7 +7,7 @@ import lotto.dto.WinningResultDto;
 
 public class OutputView {
     public static void printPurchaseCount(int count) {
-        System.out.printf((PrintMessage.PURCHASE_RESULT.getMessage()), count);
+        System.out.printf(PrintMessage.PURCHASE_RESULT.getMessage(), count);
     }
 
     public static void printLottos(List<String> lottos) {
@@ -19,7 +19,7 @@ public class OutputView {
         System.out.println(PrintMessage.WINNING_RESULT_HEADER.getMessage());
         System.out.println(PrintMessage.WINNING_RESULT_SEPARATOR.getMessage());
         printWinningResults(winningResultDto.getWinningResults());
-        System.out.printf(PrintMessage.TOTAL_RETURN.getMessage(),winningResultDto.getTotalReturnRate());
+        System.out.printf(PrintMessage.TOTAL_RETURN.getMessage(), winningResultDto.getTotalReturnRate());
     }
 
     private static void printWinningResults(List<RankResult> winningResults) {

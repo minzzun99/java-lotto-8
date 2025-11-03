@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -7,7 +7,6 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.domain.strategy.NumberGenerator;
 import lotto.dto.WinningResultDto;
-import lotto.service.LottoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
