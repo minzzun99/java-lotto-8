@@ -51,4 +51,10 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
+
+    public int calculateMatchCount(List<Integer> targetNumbers) {
+        return (int) numbers.stream()
+                .filter(targetNumbers::contains)
+                .count();
+    }
 }

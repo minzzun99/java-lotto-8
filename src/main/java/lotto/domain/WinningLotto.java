@@ -37,13 +37,7 @@ public class WinningLotto {
     }
 
     private int countMatchNumbers(Lotto lotto) {
-        int count = 0;
-        for (Integer number : lotto.getNumbers()) {
-            if (winningLotto.getNumbers().contains(number)) {
-                count++;
-            }
-        }
-        return count;
+        return lotto.calculateMatchCount(winningLotto.getNumbers());
     }
 
     private boolean checkBonusNumberMatch(Lotto lotto, int matchCount) {
