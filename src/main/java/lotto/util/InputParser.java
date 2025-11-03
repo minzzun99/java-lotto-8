@@ -24,6 +24,7 @@ public class InputParser {
     }
 
     public static int parseAmount(String input) {
+        validateNullOrEmpty(input);
         String stripInput = input.strip();
         validateAmountFormat(stripInput);
         return parseInteger(stripInput.replace(",", ""));
