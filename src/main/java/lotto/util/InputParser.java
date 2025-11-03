@@ -39,7 +39,7 @@ public class InputParser {
         }
     }
 
-    public static void validateNullOrEmpty(String input) {
+    private static void validateNullOrEmpty(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY_INPUT.getMessage());
         }
